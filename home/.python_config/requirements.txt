@@ -1,0 +1,4 @@
+commitizen>=2.0.2
+yapf>=0.30.0
+pipenv>=2020.6.2
+cookiecutter>=1.7.2

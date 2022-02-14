@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# ----------------------------------------------------------------
+# Bash Git Support - Show Git Repo Information in Bash Prompt
+# ----------------------------------------------------------------
+
+
+# shellcheck source=.bash_env
+source "$( dirname "${BASH_SOURCE[0]}" )/.bash_env"
+
+find_git_dirty() {
+  local git_dirty
+  local status
+  env_colors
+
+  status=$(git status --porcelain 2> /dev/null)
+  if [[ "$status" != "" ]]; then
+    git_dirty="${BRed}*${NC}"
+  else
+    git_dirty=""
+  fi
+
+  echo -en "${git_dirty}"
+
+}
+
+find_git_branch() {
+  env_colors
+
+  local branch
+  local git_branch
+  local repository_name
+
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+    if [[ "$branch" == "HEAD" ]]; then
+      branch='detached*'
+    fi
+
+    repository_name=$(git rev-parse --show-toplevel)
+    repository_name=$(basename "${repository_name}")
+
+    git_branch="[r:${Yellow}${repository_name}${NC}/b:${Cyan}${branch}${NC}]\n"
+  else
+    git_branch=""
+  fi
+  echo -en "${git_branch}"
+}
+
+git_status() {
+  find_git_dirty
+  find_git_branch
+}
+
+PROMPT_COMMAND="git_status; $PROMPT_COMMAND"

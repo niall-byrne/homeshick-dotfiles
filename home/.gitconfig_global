@@ -1,0 +1,23 @@
+# This is Git's per-user configuration file.
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  br = branch
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ld = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+  ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  unstage = reset -q HEAD --
+  pushf = push --force-with-lease
+  pushb = push --set-upstream origin --
+  last = log -1 HEAD
+[push]
+  default = simple
+[color]
+  ui = 1
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore_global
+[user]
+  email = niall@sharedvisionsolutions.com
+  name = Niall Byrne

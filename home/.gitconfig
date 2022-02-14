@@ -1,0 +1,14 @@
+[include]
+	path = ~/.gitconfig_global
+[core]
+	excludesfile = /Users/nbyrne/.gitignore_global
+[user]
+	name = Niall Byrne
+	email = 9848926+niall-byrne@users.noreply.github.com 
+[alias]
+	up = pull --rebase --autostash
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

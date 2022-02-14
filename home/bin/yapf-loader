@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Called from PyCharm to lint python files
+
+[[ $(echo "$1" | tr . \\n | tail -n1) != "py"  ]] && echo "Not a valid python file" && exit 0
+
+/Users/nbyrne/.asdf/shims/yapf -i --style='{based_on_style: google, INDENT_WIDTH: 2, ALIGN_CLOSING_BRACKET_WITH_VISUAL_INDENT: false, DEDENT_CLOSING_BRACKETS: false}' "$1"

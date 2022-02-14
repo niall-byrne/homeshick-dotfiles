@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# ----------------------------------------------------------------
+# Bash Exported Environment Variables
+# ----------------------------------------------------------------
+
+# shellcheck disable=SC1090
+# shellcheck disable=SC2034
+
+env_osx() {
+    export TERM=xterm-color
+    export CLICOLOR=1
+    export LSCOLORS=ExGxdxdhBxdxDxHBagacac
+    export LSCOLORSOLD=ExFxBxDxCxegedabagacad
+    export GREP_COLOR='0;31;40'
+
+    export VAGRANT_HOME="/Volumes/Projects/Vagrant"
+    [[ ! -d "${VAGRANT_HOME}" ]] && mkdir -p "${VAGRANT_HOME}"
+
+    # iterm
+    if [ -f "${HOME}/.iterm2_shell_integration.bash" ]; then
+        # shellcheck disable=SC1091
+        source "${HOME}/.iterm2_shell_integration.bash"
+    fi
+
+    if [[ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc' ]]; then
+        # shellcheck disable=SC1091
+        source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+    fi
+
+    if [[ -e '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc' ]]; then
+        # shellcheck disable=SC1091
+        source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+    fi
+
+    if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+        # shellcheck disable=SC1091
+        source "$(brew --prefix)/etc/bash_completion"
+    fi
+
+}
+
+env_linux() {
+    export TERM=xterm-color
+    export CLICOLOR=1
+    export LSCOLORS=ExGxdxdhBxdxDxHBagacac
+    export LSCOLORSOLD=ExFxBxDxCxegedabagacad
+    export GREP_COLOR='0;31;40'
+}
+
+env_colors() {
+    # Normal Colors
+    Black='\033[30m'        # Black
+    Red='\033[31m'          # Red
+    Green='\033[32m'        # Green
+    Yellow='\033[33m'       # Yellow
+    Blue='\033[34m'         # Blue
+    Purple='\033[35m'       # Purple
+    Cyan='\033[36m'         # Cyan
+    White='\033[37m'        # White
+
+    # Bold
+    BBlack='\033[30m'       # Black
+    BRed='\033[31m'         # Red
+    BGreen='\033[32m'       # Green
+    BYellow='\033[33m'      # Yellow
+    BBlue='\033[34m'        # Blue
+    BPurple='\033[35m'      # Purple
+    BCyan='\033[36m'        # Cyan
+    BWhite='\033[37m'       # White
+
+    # Background
+    On_Black='\033[40m'       # Black
+    On_Red='\033[41m'         # Red
+    On_Green='\033[42m'       # Green
+    On_Yellow='\033[43m'      # Yellow
+    On_Blue='\033[44m'        # Blue
+    On_Purple='\033[45m'      # Purple
+    On_Cyan='\033[46m'        # Cyan
+    On_White='\033[47m'       # White
+
+    NC="\033[0m"               # Color Reset
+}
+
+case ${PLATFORM} in
+*Darwin*)
+  env_osx
+  ;;
+*Linux*)
+  env_linux
+  ;;
+*)
+  echo "WARNING: Cannot set environment for this unknown platform."
+  ;;
+esac
+
+

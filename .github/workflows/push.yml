@@ -1,0 +1,43 @@
+name: Dotfiles Automation
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 6 * * 1'
+
+env:
+  ORGNAME: niall-byrne
+  REPONAME: dotfiles
+  WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+jobs:
+
+  dotfiles:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Dotfiles -- Checkout
+      uses: actions/checkout@v1
+
+    - name: Dotfiles -- Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+        architecture: 'x64'
+
+    - name: Dotfiles -- Shellcheck
+      run: |
+        cd home
+        shellcheck .bash*[^includes] -x
+        shellcheck $(grep -lR "#\!/bin/bash" bin)
+
+    - name: Dotfiles -- Report Success
+      run: |
+        ./.github/workflows/scripts/notifications.sh ":white_check_mark: Pipeline has succeeded!"
+
+    - name: Dotfiles -- Report Failure
+      if: failure()
+      run: |
+        ./.github/workflows/scripts/notifications.sh ":x: Pipeline has failed!"

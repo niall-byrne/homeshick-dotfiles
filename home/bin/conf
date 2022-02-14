@@ -1,0 +1,14 @@
+#!/bin/bash
+
+[[ -z "$1" ]] && echo "What do you want to configure?" && exit 127
+
+case $1 in
+  python)
+    echo "Configuring python ..."
+    pip install -r "${HOME}/.python_config/requirements.txt"
+    asdf reshim
+    ;;
+  *)
+   echo "Cannot configure that..."
+   ;;
+esac

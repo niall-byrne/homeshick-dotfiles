@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# ----------------------------------------------------------------
+# Bash Exported Environment Variables
+# ----------------------------------------------------------------
+
+path_osx() {
+    export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+    export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+    export GOPATH=~/workspace/golang
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
+}
+
+path_linux() {
+    echo "Linux"
+}
+
+case ${PLATFORM} in
+*Darwin*)
+  path_osx
+  ;;
+*Linux*)
+  path_linux
+  ;;
+*)
+  echo "WARNING: Cannot set path for this unknown platform."
+  ;;
+esac
