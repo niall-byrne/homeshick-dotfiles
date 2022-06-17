@@ -5,7 +5,10 @@
 # ----------------------------------------------------------------
 
 path_osx() {
-    export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+    [[ -d "/usr/local/bin" ]] && export PATH="/usr/local/bin:$PATH"
+    [[ -d "/usr/local/sbin" ]] && export PATH="/usr/local/sbin:$PATH"
+    [[ -d "/opt/homebrew/bin" ]] && export PATH="/opt/homebrew/bin:$PATH"
+    [[ -d "/opt/homebrew/sbin" ]] && export PATH="/opt/homebrew/sbin:$PATH"
     export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
     export GOPATH=~/workspace/golang
     export GOBIN=$GOPATH/bin
