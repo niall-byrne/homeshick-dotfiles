@@ -11,6 +11,8 @@
   pushf = push --force-with-lease
   pushb = push --set-upstream origin --
   last = log -1 HEAD
+  red = stash -k -u
+  green = "! git stash -u -- $(git diff --staged --name-only)"
 [push]
   default = simple
 [color]
