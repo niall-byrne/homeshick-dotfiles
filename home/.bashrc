@@ -156,10 +156,7 @@ if [[ -f "${HOME}/.homesick/repos/homeshick/completions/homeshick-completion.bas
 fi
 
 # Custom Scripts
-if [[ -f "${HOME}/bin/marathon/marathon.py" ]]; then
-    "${HOME}/bin/marathon/marathon.py"
-fi
-
 if [[ -f "${HOME}/bin/weather" ]]; then
     weather -city toronto -appid 43787c792001977957121d7a7d952674
 fi
+
