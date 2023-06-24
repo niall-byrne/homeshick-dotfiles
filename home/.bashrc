@@ -160,3 +160,6 @@ if [[ -f "${HOME}/bin/weather" ]]; then
     weather -city toronto -appid 43787c792001977957121d7a7d952674
 fi
 
+# GPG TTY
+export GPG_TTY=$(tty)
+
