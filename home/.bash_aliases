@@ -6,6 +6,9 @@
 
 # shellcheck disable=SC1090
 
+# Fix Garbled Terminal
+alias fix='echo -e "\033c"'
+
 # Lazy Git
 alias gg="lazygit"
 
