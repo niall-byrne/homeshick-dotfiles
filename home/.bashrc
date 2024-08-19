@@ -27,6 +27,7 @@ git config --global core.excludesfile ~/.gitignore_global
 if [[ -f "${HOME}/.asdf/asdf.sh" ]]; then
     # shellcheck disable=SC1091
     . "${HOME}/.asdf/asdf.sh"
+    export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 fi
 if [[ -f "$HOME/.asdf/completions/asdf.bash" ]]; then
     # shellcheck disable=SC1091
