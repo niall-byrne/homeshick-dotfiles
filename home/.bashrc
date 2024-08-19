@@ -163,3 +163,7 @@ fi
 # GPG TTY
 export GPG_TTY=$(tty)
 
+# Docker
+export DOCKER_USER_UID="$(id -u)"
+export DOCKER_USER_GID="$(id -g)"
+
