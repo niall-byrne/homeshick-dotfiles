@@ -17,3 +17,5 @@
 	autoSetupRemote = true
 [tag]
 	forceSignAnnotated = true
+[safe]
+	directory = /app
